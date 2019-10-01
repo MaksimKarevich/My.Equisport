@@ -61,7 +61,7 @@ module.exports = {
         "The Email field is present"
       )
 
-      //Negative tests for email field
+      //Negative e2e_tests for email field
       .click(elements.buttonRestore)
       .waitForElementVisible(
         elements.errorMessage,

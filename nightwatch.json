@@ -1,5 +1,5 @@
 {
-  "src_folders": "./tests",
+  "src_folders": ["./e2e_tests", "./tests"],
   "page_objects_path": "page-objects",
   "output_folder": "reports",
   "globals_path": "globals.js",
@@ -21,11 +21,10 @@
 
       "desiredCapabilities": {
         "browserName": "chrome",
+        "acceptSslCerts": true,
         "chromeOptions" : {
-          "args" : ["--no-sandbox", "--disable-gpu", "--incognito"],
-          "binary" : "/usr/bin/chromium-browser"
-        },
-        "acceptSslCerts": true
+          "args" : ["--no-sandbox", "--disable-gpu", "--incognito"]
+        }
       }
     }
   }
