@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2865910f-8d6e-432f-b5f4-34b493a0d6e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/My.Equisport.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/My.Equisport.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/123.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/123.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chromedriver" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chromedriver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nightwatch.json" beforeDir="false" afterPath="$PROJECT_DIR$/nightwatch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/forgetpasswordTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/loginTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/loginTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/loginTestsNegative.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/loginTestsNegative.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/profileTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/profileTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/signupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/signupTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/signupTestsNegative.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/signupTestsNegative.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +52,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.NodeInterpreter" value="project" />
     <property name="prettierjs.PrettierConfiguration.Package" value="/usr/lib/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -106,7 +101,7 @@
       <workItem from="1569401165060" duration="43000" />
       <workItem from="1569408321062" duration="3826000" />
       <workItem from="1569833569593" duration="8877000" />
-      <workItem from="1569917676615" duration="2911000" />
+      <workItem from="1569917676615" duration="4290000" />
     </task>
     <servers />
   </component>

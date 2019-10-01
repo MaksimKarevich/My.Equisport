@@ -2,6 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{My.Equisport/node_modules}" />
-    <file url="PROJECT" libraries="{@types/mocha, @types/nightwatch, @types/npm, @types/prettier, My.Equisport/node_modules}" />
+    <file url="PROJECT" libraries="{@types/nightwatch, @types/prettier, My.Equisport/node_modules}" />
   </component>
 </project>
