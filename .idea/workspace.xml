@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2865910f-8d6e-432f-b5f4-34b493a0d6e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/My.Equisport.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/My.Equisport.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/chromedriver" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chromedriver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nightwatch.json" beforeDir="false" afterPath="$PROJECT_DIR$/nightwatch.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +97,7 @@
       <workItem from="1569401165060" duration="43000" />
       <workItem from="1569408321062" duration="3826000" />
       <workItem from="1569833569593" duration="8877000" />
-      <workItem from="1569917676615" duration="4290000" />
+      <workItem from="1569917676615" duration="5648000" />
     </task>
     <servers />
   </component>
