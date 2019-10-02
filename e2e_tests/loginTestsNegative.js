@@ -11,7 +11,7 @@ module.exports = {
   },
 
   "Login Tests Negative": function(browser) {
-    const url = "http://localhost:3000";
+    const url = "http://ec2-13-48-149-152.eu-north-1.compute.amazonaws.com/";
     const emailDomain = "test.com";
     const nickname = "test" + Date.now();
     const input = {
@@ -24,8 +24,7 @@ module.exports = {
       password: 'input[placeholder="Enter your password here"]', //Password field
       buttonLogin: "button.FormButton-yq5rye-0.etjSuT", //Button Login
       buttonLogout: '//div[contains(text(),"Logout")]', //Button Logout
-      textButtonLogin:
-        ".Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)" //Text button Login
+      textButtonLogin: ".Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)" //Text button Login
     };
     const message = {
       displayed: "The error message is displayed.",
@@ -38,79 +37,37 @@ module.exports = {
     browser
       //Navigate to Login page
       .url(url)
-      .waitForElementVisible(
-        elements.textButtonLogin,
-        1000,
-        false,
-        function() {},
-        "The Login button is present"
-      )
+      .waitForElementVisible(elements.textButtonLogin, 1000, false, function() {},
+        "The Login button is present")
       .click(elements.textButtonLogin)
-      .waitForElementVisible(
-        elements.email,
-        1000,
-        false,
-        function() {},
-        "The Email field is present"
-      )
+      .waitForElementVisible(elements.email, 1000, false, function() {},
+        "The Email field is present")
       .assert.urlContains("/auth/login", "You are on the Login page")
 
       //Send empty form
       .click(elements.buttonLogin)
-      .waitForElementVisible(
-        elements.errorMessage,
-        1000,
-        false,
-        function() {},
-        message.present
-      )
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {}, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(
-        elements.errorMessage,
-        message.emailRequired,
-        message.emailRequired
-      )
-      .assert.containsText(
-        elements.errorMessage,
-        message.passwordRequired,
-        message.passwordRequired
-      )
+      .assert.containsText(elements.errorMessage, message.emailRequired, message.emailRequired)
+      .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired)
 
       //FIll the email field with invalid data > clear
       .setValue(elements.email, nickname)
       .click(elements.buttonLogin)
-      .waitForElementVisible(
-        elements.errorMessage,
-        1000,
-        false,
-        function() {},
-        message.present
-      )
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {}, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid, message.valid)
-      .assert.containsText(
-        elements.errorMessage,
-        message.passwordRequired,
-        message.passwordRequired
-      )
+      .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired
+    )
       .clearValue(elements.email)
 
       //FIll the password field with invalid data > clear
       .setValue(elements.password, "q")
       .click(elements.buttonLogin)
-      .waitForElementVisible(
-        elements.errorMessage,
-        1000,
-        false,
-        function() {},
-        message.present
-      )
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {}, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(
-        elements.errorMessage,
-        message.emailRequired,
-        message.emailRequired
-      )
+      .pause(10000)
+      .assert.containsText(elements.errorMessage, message.emailRequired, message.emailRequired)
       .clearValue(elements.password)
 
       //Login with correct data
@@ -123,5 +80,5 @@ module.exports = {
       .waitForElementVisible(elements.buttonLogout)
       .assert.elementPresent(elements.buttonLogout)
       .click(elements.buttonLogout);
-  }
+  },
 };

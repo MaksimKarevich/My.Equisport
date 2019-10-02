@@ -1,5 +1,5 @@
 module.exports = {
-  "@tags": ["all", "login", "positive"],
+  "@tags": ["all", "login", "lpositive"],
   before: function(browser) {
     console.log("Setting up... browser", typeof browser);
   },
@@ -14,53 +14,31 @@ module.exports = {
       username: "anyemail@email.com",
       password: "QWE123qwe"
     };
-    const url = "http://localhost:3000/";
+    const url = "http://ec2-13-48-149-152.eu-north-1.compute.amazonaws.com";
     const elements = {
       email: 'input[placeholder="Enter your email here"]', //Email field
       password: 'input[placeholder="Enter your password here"]', //Password field
-      textButtonLogin:
-        ".Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)", //Text button Login
-      textButtonProfile:
-        ".Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(2)", //Text button Profile
-      buttonLogin: ".FormButton-yq5rye-0.etjSuT", //Button Login
-      textButtonLogout: ".Navigation__Dropdown-sc-1cwjzq8-3:nth-child(3)" //Text button Logout
+      textButtonLogin: ".Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)", //Text button Login
+      textButtonLogout: ".Navigation__Dropdown-sc-1cwjzq8-3:nth-child(3)", //Text button Logout
+      buttonLogin: ".FormButton-yq5rye-0.etjSuT" //Button Login
     };
 
     browser
       .url(url)
-      .waitForElementVisible(
-        elements.textButtonLogin,
-        1000,
-        false,
-        function() {},
-        "Login button is visible"
-      )
+      .waitForElementVisible(elements.textButtonLogin, 1000, false, function() {},
+        "Login button is visible")
       .click(elements.textButtonLogin)
       .assert.urlContains("/auth/login", "You are on the Login page")
-      .waitForElementVisible(
-        elements.email,
-        1000,
-        false,
-        function() {},
-        "Email field is visible"
-      )
+      .waitForElementVisible(elements.email, 2000, false, function() {},
+        "Email field is visible")
       .setValue(elements.email, input.username)
       .setValue(elements.password, input.password)
       .click(elements.buttonLogin)
-      .waitForElementVisible(
-        elements.textButtonProfile,
-        1000,
-        false,
-        function() {},
-        "Profile button is visible"
-      )
+      .waitForElementVisible(elements.textButtonLogout, 2000, false, function() {},
+        "Logout button is visible")
       .click(elements.textButtonLogout)
-      .waitForElementVisible(
-        elements.textButtonLogin,
-        1000,
-        false,
-        function() {},
+      .waitForElementVisible(elements.textButtonLogin, 1000, false, function() {},
         "You are logged out"
       );
-  }
+  },
 };
