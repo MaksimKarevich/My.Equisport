@@ -1,3 +1,7 @@
+//.setValue(SELECTOR, ['', [browser.Keys.CONTROL, "a"]])
+//.keys('\ue003')
+// These elements used because .clearValue is not worked properly
+
 module.exports = {
   "@tags": ["all", "forgot_password", "fpositive"],
   before: function(browser) {
@@ -73,9 +77,10 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
-      .assert.attributeContains(elements.email, 'value', '')
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + "@")
+      .assert.attributeContains(elements.email, 'value', '@')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         message.present)
@@ -84,7 +89,7 @@ module.exports = {
         "Result - " + message.valid)
 
       .setValue(elements.email, "@")
-		.assert.attributeContains(elements.email, 'value', '@')
+	  .assert.attributeContains(elements.email, 'value', '@')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         message.present)
@@ -92,13 +97,14 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
-      .assert.attributeContains(elements.email, 'value', '')
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + "@domain")
+	  .assert.attributeContains(elements.email, 'value', '@domain')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
           message.present)
-        .pause(10000)
+      .pause(1000)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.couldNotSent,
         "Result - " + message.couldNotSent)
@@ -115,12 +121,13 @@ module.exports = {
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         message.present)
-		.pause(2000)
+      .pause(1000)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.couldNotSent,
         "Result - " + message.couldNotSent)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -129,7 +136,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, "." + nickname + "@" + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -138,7 +146,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + ".@" + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -147,7 +156,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + ".." + nickname + "@" + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -156,7 +166,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + "@." + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -165,7 +176,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + "@-" + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -174,7 +186,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + "@domain-.com")
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -183,7 +196,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + "@domain..com")
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -192,7 +206,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + "@" + nickname + "@" + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -201,7 +216,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, "#@%^%#$@#$@#.com")
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -210,7 +226,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, "Joe Smith" + nickname + "@" + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -219,26 +236,28 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
 
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, nickname + "@" + emailDomain + "(Some text)")
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         message.present)
-        .pause(1000)
+      .pause(1000)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.couldNotSent,
         "Result - " + message.couldNotSent)
 
       //Positive test for email field
-      .clearValue(elements.email)
-
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, input.username)
       .click(elements.buttonRestore)
-        .pause(1000)
+      .waitForElementVisible("div.FormWrapper-kv83pj-0.iqdvhj :nth-child(3)", 1000, false, function() {},
+        message.present)
+      .pause(1000)
       .assert.elementPresent("div.FormWrapper-kv83pj-0.iqdvhj :nth-child(3)",
         "Succsess mesage is present")
-      .assert.containsText(
-          "div.FormWrapper-kv83pj-0.iqdvhj :nth-child(3)",
+      .assert.containsText("div.FormWrapper-kv83pj-0.iqdvhj :nth-child(3)",
         "Email successfully sent to your email address. Follow instructions in email to complete password restoring.",
         "Result - Email successfully sent to your email address. Follow instructions in email to complete password restoring."
       );
