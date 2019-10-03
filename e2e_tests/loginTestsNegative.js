@@ -1,5 +1,9 @@
+//.setValue(SELECTOR, ['', [browser.Keys.CONTROL, "a"]])
+//.keys('\ue003')
+// These elements used because .clearValue is not worked properly
+
 module.exports = {
-  "@tags": ["all", "login", "negative"],
+  "@tags": ["all", "login", "lnegative"],
 
   before: function(browser) {
     console.log("Setting up... browser", typeof browser);
@@ -19,12 +23,12 @@ module.exports = {
       password: "QWE123qwe"
     };
     const elements = {
-      errorMessage: ".AuthErrorMessage__AuthErrorMessageContainer-vy0jys-0", //Error message
-      email: 'input[placeholder="Enter your email here"]', //Email field
-      password: 'input[placeholder="Enter your password here"]', //Password field
-      buttonLogin: "button.FormButton-yq5rye-0.etjSuT", //Button Login
-      buttonLogout: '//div[contains(text(),"Logout")]', //Button Logout
-      textButtonLogin: ".Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)" //Text button Login
+      errorMessage: ".AuthErrorMessage__AuthErrorMessageContainer-vy0jys-0",
+      email: 'input[placeholder="Enter your email here"]',
+      password: 'input[placeholder="Enter your password here"]',
+      buttonLogin: "button.FormButton-yq5rye-0.etjSuT",
+      buttonLogout: '//div[contains(text(),"Logout")]',
+      textButtonLogin: ".Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)"
     };
     const message = {
       displayed: "The error message is displayed.",
@@ -45,34 +49,48 @@ module.exports = {
       .assert.urlContains("/auth/login", "You are on the Login page")
 
       //Send empty form
+      .assert.attributeContains(elements.email, 'value', "")
+      .assert.attributeContains(elements.password, 'value', "")
       .click(elements.buttonLogin)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {}, message.present)
-      .assert.elementPresent(elements.errorMessage, message.displayed)
+      //.assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.emailRequired, message.emailRequired)
       .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired)
 
-      //FIll the email field with invalid data > clear
+      //Fill the email field with invalid data
       .setValue(elements.email, nickname)
+      .assert.attributeContains(elements.email, 'value', nickname)
       .click(elements.buttonLogin)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {}, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid, message.valid)
-      .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired
-    )
-      .clearValue(elements.email)
+      .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired)
 
-      //FIll the password field with invalid data > clear
+      //Fill the password field with invalid data
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.password, "q")
+      .assert.attributeContains(elements.password, 'value', "q")
       .click(elements.buttonLogin)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {}, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .pause(10000)
       .assert.containsText(elements.errorMessage, message.emailRequired, message.emailRequired)
-      .clearValue(elements.password)
+
+      //Fill both field with invalid data
+      .setValue(elements.email, nickname)
+      .assert.attributeContains(elements.email, 'value', nickname)
+      .assert.attributeContains(elements.password, 'value', "q")
+      .click(elements.buttonLogin)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {}, message.present)
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid, message.valid)
 
       //Login with correct data
-      .clearValue(elements.email)
-      .clearValue(elements.password)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.password, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .assert.attributeEquals(elements.password, 'value', '')
       .setValue(elements.email, input.username)
       .setValue(elements.password, input.password)
       .click(elements.buttonLogin)

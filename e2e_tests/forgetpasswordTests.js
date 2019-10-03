@@ -49,6 +49,7 @@ module.exports = {
 
       //Negative tests for email field
       .click(elements.buttonRestore)
+      .assert.attributeContains(elements.email, 'value', '')
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
@@ -64,6 +65,7 @@ module.exports = {
         "Result - " + message.valid)
 
       .setValue(elements.email, nickname + "." + nickname)
+      .assert.attributeContains(elements.email, 'value', nickname + "." + nickname)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         message.present)
@@ -72,6 +74,7 @@ module.exports = {
         "Result - " + message.valid)
 
       .clearValue(elements.email)
+      .assert.attributeContains(elements.email, 'value', '')
       .setValue(elements.email, nickname + "@")
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -81,6 +84,7 @@ module.exports = {
         "Result - " + message.valid)
 
       .setValue(elements.email, "@")
+		.assert.attributeContains(elements.email, 'value', '@')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         message.present)
@@ -89,11 +93,12 @@ module.exports = {
         "Result - " + message.valid)
 
       .clearValue(elements.email)
+      .assert.attributeContains(elements.email, 'value', '')
       .setValue(elements.email, nickname + "@domain")
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
           message.present)
-        .pause(2000)
+        .pause(10000)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.couldNotSent,
         "Result - " + message.couldNotSent)
@@ -106,10 +111,11 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.valid,
         "Result - " + message.valid)
       .setValue(elements.email, "com")
+        .assert.attributeContains(elements.email, 'value', 'com')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         message.present)
-      .pause(2000)
+		.pause(2000)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.couldNotSent,
         "Result - " + message.couldNotSent)
@@ -218,16 +224,17 @@ module.exports = {
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         message.present)
-      .pause(2000)
+        .pause(1000)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.couldNotSent,
         "Result - " + message.couldNotSent)
 
       //Positive test for email field
       .clearValue(elements.email)
+
       .setValue(elements.email, input.username)
       .click(elements.buttonRestore)
-      .pause(2000)
+        .pause(1000)
       .assert.elementPresent("div.FormWrapper-kv83pj-0.iqdvhj :nth-child(3)",
         "Succsess mesage is present")
       .assert.containsText(

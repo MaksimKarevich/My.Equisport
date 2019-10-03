@@ -10,7 +10,7 @@ module.exports = {
     },
 
     'Test Test': function (browser) {
-        const url = 'http://localhost:3000/';
+        const url = 'http://ec2-13-48-149-152.eu-north-1.compute.amazonaws.com/';
         const emailDomain = 'test.com';
         const nickname = 'test'+ Date.now();
         const input = {

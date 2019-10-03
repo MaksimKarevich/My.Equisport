@@ -1,3 +1,7 @@
+//.setValue(SELECTOR, ['', [browser.Keys.CONTROL, "a"]])
+//.keys('\ue003')
+// These elements used because .clearValue is not worked properly
+
 module.exports = {
   "@tags": ["all", "signup", "snegative"],
   before: function(browser) {
@@ -55,7 +59,7 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired)
 
       //FIll the email field with invalid data
-      .setValue(elements.email, "email")
+      .setValue(elements.email, nickname)
       .click(elements.buttonSignUp)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         "The error message is present")
@@ -85,7 +89,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.numAndLet, message.numAndLet)
 
       //Clear the email field
-      .clearValue(elements.email)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .click(elements.buttonSignUp)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         "The error message is present")
@@ -95,7 +100,8 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.numAndLet, message.numAndLet)
 
       //Clear the password field and set email
-      .clearValue(elements.password)
+      .setValue(elements.password, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, "email")
       .click(elements.buttonSignUp)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
@@ -112,7 +118,6 @@ module.exports = {
       //Valid password and different invalid emails
       .setValue(elements.password, input.password)
       .setValue(elements.passwordRepeat, input.password)
-
       //Missing domain 1
       .setValue(elements.email, "email@")
       .click(elements.buttonSignUp)
@@ -120,24 +125,170 @@ module.exports = {
         "The error message is present")
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid, "Result - " + message.valid)
-      .clearValue(elements.email)
-
       //Missing domain 2
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, "email@domain")
       .click(elements.buttonSignUp)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
         "The error message is present")
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid, "Result - " + message.valid)
-      .clearValue(elements.email)
-
       //Missing domain 3
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, "email@domain.")
       .click(elements.buttonSignUp)
       .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
           "The error message is present")
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
-      .clearValue(elements.email);
+      //First dot in address
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, "." + input.username)
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //Last dot in address
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, "test.@" + emailDomain)
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //Double dot in address
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, "test..@" + emailDomain)
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //First dash in domain
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, nickname + "@-domain.com")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //Last dash in domain
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, nickname + "@domain-.com")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //First dot in domain
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, nickname + "@.domain.com")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //Last(double) dot in domain
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, nickname + "@domain..com")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //Double @ @
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, nickname + "@" + nickname + emailDomain)
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //Garbage
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, "#@%^%#$@#$@#.com")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //Copy-paste from address book
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, "Joe Smith <" + input.username + ">")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      //Superfluous text
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, input.username + "(Joe Smith)")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+
+      //Fill email with valid data and invalid passwords
+      .clearValue(elements.email)
+      .clearValue(elements.password)
+      .clearValue(elements.passwordRepeat)
+      .setValue(elements.email, input.username)
+      .setValue(elements.password, input.password)
+      //Passwords does not match
+      .setValue(elements.passwordRepeat, 'a')
+      .click(elements.buttonSignUp)
+      .pause(1000)
+      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, "The password confirmation does not match.","Result - The password confirmation does not match.")
+      //Passwords only letters - 5 characters
+      .setValue(elements.password, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.passwordRepeat, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.passwordRepeat, "TestT")
+      .setValue(elements.password, "TestT")
+      .click(elements.buttonSignUp)
+      .pause(1000)
+      .waitForElementVisible(elements.errorMessage, 3000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.numAndLet,"Result - " + message.numAndLet)
+      .assert.containsText(elements.errorMessage, message.characters6,"Result - " + message.characters6)
+      //Passwords only letters - 6 characters
+      .setValue(elements.passwordRepeat, "e")
+      .setValue(elements.password, "e")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 3000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.numAndLet,"Result - " + message.numAndLet)
+      //Passwords only numerical - 6 characters
+      .setValue(elements.password, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.passwordRepeat, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.passwordRepeat, "123456")
+      .setValue(elements.password, "123456")
+      .waitForElementVisible(elements.errorMessage, 3000, false, function() {},
+        "The error message is present")
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.characters6,"Result - " + message.characters6)
   },
 };

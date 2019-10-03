@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2865910f-8d6e-432f-b5f4-34b493a0d6e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/loginTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/loginTests.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e2e_tests/loginTestsNegative.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/loginTestsNegative.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/profileTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/profileTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/signupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/signupTests.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e2e_tests/signupTestsNegative.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/signupTestsNegative.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/123.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/123.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +40,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../My.Afterthebest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -106,7 +103,8 @@
       <workItem from="1569408321062" duration="3826000" />
       <workItem from="1569833569593" duration="8877000" />
       <workItem from="1569917676615" duration="11795000" />
-      <workItem from="1569936376293" duration="4806000" />
+      <workItem from="1569936376293" duration="7318000" />
+      <workItem from="1570092344916" duration="16372000" />
     </task>
     <servers />
   </component>
