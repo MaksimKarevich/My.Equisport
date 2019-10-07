@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2865910f-8d6e-432f-b5f4-34b493a0d6e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e_tests/profileTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/profileTestsUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/globals.js" beforeDir="false" afterPath="$PROJECT_DIR$/globals.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +29,9 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1QxwIA2A5LbvUVnbIjR9CKltmPg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -100,7 +103,9 @@
       <workItem from="1569833569593" duration="8877000" />
       <workItem from="1569917676615" duration="11795000" />
       <workItem from="1569936376293" duration="7318000" />
-      <workItem from="1570092344916" duration="18723000" />
+      <workItem from="1570092344916" duration="18994000" />
+      <workItem from="1570181927473" duration="1411000" />
+      <workItem from="1570448088949" duration="4811000" />
     </task>
     <servers />
   </component>
