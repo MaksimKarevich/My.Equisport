@@ -1,5 +1,5 @@
 module.exports = {
-  "@tags": ["all", "profile", "ppositive"],
+  "@tags": ["all", "profile", "positive"],
   before: function(browser) {
     console.log("Setting up... browser", typeof browser);
   },
@@ -23,7 +23,11 @@ module.exports = {
       buttonLogin: 'button[class="FormButton-yq5rye-0 etjSuT"]',
       buttonSave: 'button[class="FormButton-yq5rye-0 jvrgdz"]',
       textButtonLogout: ".Navigation__Dropdown-sc-1cwjzq8-3:nth-child(3)",
-      searchField: 'input[placeholder="Search here"]'
+      searchField: 'input[placeholder="Search here"]',
+      fieldCurPassword: 'input[placeholder="Current password"]',
+      fieldNewPassword: 'input[placeholder="New password"]',
+      fieldRepeatPassword: 'input[placeholder="Repeat password"]',
+      messageSuccess: '.CustomerProfile__SuccessMessageContainer-sc-11t8w6m-4:nth-child(2)',
     };
 
     browser
@@ -32,8 +36,7 @@ module.exports = {
       .waitForElementVisible(elements.textButtonLogin, 5000, false, function() {},
           "Login button is visible")
       .click(elements.textButtonLogin)
-      .assert.urlContains("/auth/login",
-	  "You are on the Login page")
+      .assert.urlContains("/auth/login","You are on the Login page")
       .waitForElementVisible(elements.email, 5000, false, function() {},
         "Email field is visible")
       .setValue(elements.email, input.username)
@@ -44,24 +47,19 @@ module.exports = {
 
 	  //Navigate to Profile
       .click(elements.textButtonProfile)
-      .waitForElementVisible('input[placeholder="Current password"]', 5000, false, function() {},
+      .waitForElementVisible(elements.fieldCurPassword, 5000, false, function() {},
         "Current password field is visible")
-      .assert.urlContains("/profile",
-	  "You are on the Profile page")
+      .assert.urlContains("/profile","You are on the Profile page")
 
 	  //Fill all fields with valid data
-      .setValue('input[placeholder="Current password"]', input.password)
-      .setValue('input[placeholder="New password"]', input.password)
-      .setValue('input[placeholder="Repeat password"]', input.password)
+      .setValue(elements.fieldCurPassword, input.password)
+      .setValue(elements.fieldNewPassword, input.password)
+      .setValue(elements.fieldRepeatPassword, input.password)
       .click(elements.buttonSave)
-      .waitForElementVisible('.CustomerProfile__SuccessMessageContainer-sc-11t8w6m-4:nth-child(2)', 5000, false, function() {},
+      .waitForElementVisible(elements.messageSuccess, 5000, false, function() {},
             "Success message is visible")
-      .assert.elementPresent(
-        ".CustomerProfile__SuccessMessageContainer-sc-11t8w6m-4:nth-child(2)",
-        "A success message is shown")
-      .assert.containsText(
-        ".CustomerProfile__SuccessMessageContainer-sc-11t8w6m-4:nth-child(2)",
-        "Your password successfully updated!",
+      .assert.elementPresent(elements.messageSuccess,"A success message is shown")
+      .assert.containsText(elements.messageSuccess,"Your password successfully updated!",
         "Password changed successfully")
       .click(elements.textButtonLogout)
       .waitForElementVisible(elements.textButtonLogin, 5000, false, function() {},

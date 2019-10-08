@@ -23,38 +23,36 @@ module.exports = {
     const elements = {
       errorMessage: ".AuthErrorMessage__AuthErrorMessageContainer-vy0jys-0",
       email: 'input[placeholder="Enter your email here"]',
-      buttonRestore: ".FormButton-yq5rye-0.etjSuT"
+      buttonRestore: ".FormButton-yq5rye-0.etjSuT",
+      textButtonLogin: ".Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)",
+      textButtonForgot: '.LoginForm__ForgotPassword-sc-6jjc91-0.fudhHS:nth-child(6) a:nth-child(1)',
     };
     const message = {
       displayed: "The error message is displayed.",
       required: "The email field is required.",
       valid: "The email must be a valid email address.",
       couldNotSent: "Email could not sent to this email address.",
-      present: "The error message is present"
+      present: "The error message is present",
+      emailSent: 'div[class=\'FormHeader-sc-13q6vh5-0 fZirzj\']',
     };
 
     browser
       //Navigate to Forgot Password page
       .url(url)
-      .useXpath()
-      .waitForElementVisible(
-        '//a[contains(text(),"Login")]', 1000, false, function() {},
+      .waitForElementVisible(elements.textButtonLogin, 5000, false, function() {},
         "The Login button is present")
-      .click('//a[contains(text(),"Login")]')
-      .waitForElementVisible(
-        '//a[contains(text(),"Forgot your password?")]', 1000, false, function() {},
+      .click(elements.textButtonLogin)
+      .waitForElementVisible(elements.textButtonForgot, 5000, false, function() {},
         "The Forgot Password button is present")
-      .click('//a[contains(text(),"Forgot your password?")]')
-      .useCss()
-      .assert.urlContains("/forgot-password",
-        "You are on the Forgot Password page")
-      .waitForElementVisible(elements.email, 1000, false, function() {},
+      .click(elements.textButtonForgot)
+      .assert.urlContains("/forgot-password","You are on the Forgot Password page")
+      .waitForElementVisible(elements.email, 5000, false, function() {},
         "The Email field is present")
 
       //Negative tests for email field
       .click(elements.buttonRestore)
       .assert.attributeContains(elements.email, 'value', '')
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.required,
@@ -62,7 +60,7 @@ module.exports = {
 
       .setValue(elements.email, nickname)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -71,7 +69,7 @@ module.exports = {
       .setValue(elements.email, nickname + "." + nickname)
       .assert.attributeContains(elements.email, 'value', nickname + "." + nickname)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -82,7 +80,7 @@ module.exports = {
       .setValue(elements.email, nickname + "@")
       .assert.attributeContains(elements.email, 'value', '@')
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -91,7 +89,7 @@ module.exports = {
       .setValue(elements.email, "@")
 	  .assert.attributeContains(elements.email, 'value', '@')
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -102,7 +100,7 @@ module.exports = {
       .setValue(elements.email, nickname + "@domain")
 	  .assert.attributeContains(elements.email, 'value', '@domain')
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
           message.present)
       .pause(1000)
       .assert.elementPresent(elements.errorMessage, message.displayed)
@@ -111,7 +109,7 @@ module.exports = {
 
       .setValue(elements.email, ".")
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -119,7 +117,7 @@ module.exports = {
       .setValue(elements.email, "com")
         .assert.attributeContains(elements.email, 'value', 'com')
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .pause(1000)
       .assert.elementPresent(elements.errorMessage, message.displayed)
@@ -130,7 +128,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, emailDomain)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -140,7 +138,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, "." + nickname + "@" + emailDomain)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -150,7 +148,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, nickname + ".@" + emailDomain)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -160,7 +158,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, nickname + ".." + nickname + "@" + emailDomain)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -170,7 +168,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, nickname + "@." + emailDomain)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -180,7 +178,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, nickname + "@-" + emailDomain)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -190,7 +188,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, nickname + "@domain-.com")
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -200,7 +198,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, nickname + "@domain..com")
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -210,7 +208,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, nickname + "@" + nickname + "@" + emailDomain)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -220,7 +218,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, "#@%^%#$@#$@#.com")
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -230,7 +228,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, "Joe Smith" + nickname + "@" + emailDomain)
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
@@ -240,7 +238,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, nickname + "@" + emailDomain + "(Some text)")
       .click(elements.buttonRestore)
-      .waitForElementVisible(elements.errorMessage, 1000, false, function() {},
+      .waitForElementVisible(elements.errorMessage, 5000, false, function() {},
         message.present)
       .pause(1000)
       .assert.elementPresent(elements.errorMessage, message.displayed)
@@ -252,14 +250,11 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, input.username)
       .click(elements.buttonRestore)
-      .waitForElementVisible("div.FormWrapper-kv83pj-0.iqdvhj :nth-child(3)", 1000, false, function() {},
+      .waitForElementVisible(message.emailSent, 5000, false, function() {},
         message.present)
       .pause(1000)
-      .assert.elementPresent("div.FormWrapper-kv83pj-0.iqdvhj :nth-child(3)",
-        "Succsess mesage is present")
-      .assert.containsText("div.FormWrapper-kv83pj-0.iqdvhj :nth-child(3)",
-        "Email successfully sent to your email address. Follow instructions in email to complete password restoring.",
-        "Result - Email successfully sent to your email address. Follow instructions in email to complete password restoring."
-      );
+      .assert.elementPresent(message.emailSent,"Succsess mesage is present")
+      .assert.containsText(message.emailSent, "Email sent!",
+        "Result - Email sent!");
   },
 };

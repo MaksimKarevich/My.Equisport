@@ -1,5 +1,5 @@
 module.exports = {
-  "@tags": ["all", "signup", "spositive"],
+  "@tags": ["all", "signup", "positive"],
   before: function(browser) {
     console.log("Setting up... browser", typeof browser);
   },
@@ -17,23 +17,34 @@ module.exports = {
       username: nickname + "@" + emailDomain,
       password: "QWE123qwe"
     };
+    const elements = {
+      textButtonSignUp: '.Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(2)',
+      fieldEmail: 'input[placeholder="Enter your email here"]',
+      fieldPassword: 'input[placeholder="Enter your password here"]',
+      fieldRepeatPassword: 'input[placeholder="Repeat your password"]',
+      buttonSignUp: 'button[class="FormButton-yq5rye-0 etjSuT"]',
+      buttonLogout: '.Navigation__Dropdown-sc-1cwjzq8-3:nth-child(3)',
+    };
 
     browser
       //Navigate to SignUp page
       .url(url)
-      .useXpath()
       .waitForElementVisible(
-        '//a[text()="Sign Up"]', 1000, false, function() {},
+        elements.textButtonSignUp, 5000, false, function() {},
         "The SignUp button is present")
-      .click('//a[text()="Sign Up"]')
+      .click(elements.textButtonSignUp)
       .waitForElementVisible(
-        '//input[@placeholder="Enter your email here"]', 1000, false, function() {},
+        elements.fieldEmail, 5000, false, function() {},
         "The Email field is present")
-      .useCss()
-      .assert.urlContains("/auth/signup", "You are on the SignUp page")
+      .assert.urlContains("/auth/signup",
+      "You are on the SignUp page")
 
-      .setValue('input[placeholder="Enter your email here"]', input.username)
-      .setValue('input[placeholder="Enter your password here"]', input.password)
-      .setValue('input[placeholder="Repeat your password"]', input.password);
+      //Fill the fields with valid data
+      .setValue(elements.fieldEmail, input.username)
+      .setValue(elements.fieldPassword, input.password)
+      .setValue(elements.fieldRepeatPassword, input.password)
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.buttonLogout, 5000, false, function () {},
+        'Logout button is visible')
   },
 };

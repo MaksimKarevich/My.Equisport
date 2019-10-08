@@ -1,6 +1,9 @@
+//.setValue(SELECTOR, ['', [browser.Keys.CONTROL, "a"]])
+//.keys('\ue003')
+// These elements used because .clearValue is not worked properly
 module.exports = {
 
-	'@tags': ['all', 'profile', 'apositive'],
+	'@tags': ['all', 'profile', 'positive'],
 	before: function (browser) {
 		console.log('Setting up... browser', typeof browser);
 	},
@@ -23,7 +26,6 @@ module.exports = {
 			textButtonLogin: '.Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)',
 			textButtonProfile: '.Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(2)',
 			buttonLogin: 'button[class="FormButton-yq5rye-0 etjSuT"]',
-			textButtonLogout: '.Navigation__Dropdown-sc-1cwjzq8-3:nth-child(3)',
 			searchField: 'input[placeholder="Search here"]',
 			buttonSaveProfile: 'button[class="FormButton-yq5rye-0 Profile__SaveProfileButton-sc-1ndjmos-15 WOXPl"]',
 			messageSuccess: 'div[class="Profile__SuccessMessage-sc-1ndjmos-17 bjlJXu"]',
@@ -55,8 +57,7 @@ module.exports = {
 		  .waitForElementVisible(elements.textButtonLogin, 5000, false, function () {},
 			'Login button is visible')
 		  .click(elements.textButtonLogin)
-		  .assert.urlContains('/auth/login',
-		  'You are on the Login page')
+		  .assert.urlContains('/auth/login','You are on the Login page')
 		  .waitForElementVisible(elements.email, 5000, false, function () {},
 			'Email field is visible')
 		  .setValue(elements.email, input.username)
@@ -69,8 +70,7 @@ module.exports = {
 		  .click(elements.textButtonProfile)
 		  .waitForElementVisible(elements.profileBody, 5000, false, function () {},
 			'The profile page is loaded')
-		  .assert.urlContains('/dashboard/profile',
-		  'You are on the Dashboard Profile page')
+		  .assert.urlContains('/dashboard/profile','You are on the Dashboard Profile page')
 
 		  //Fill all fields with valid data
 		  .clearValue(profile.userName)
