@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2865910f-8d6e-432f-b5f4-34b493a0d6e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e2e_tests/loginTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/loginTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/loginTestsNegative.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/loginTestsNegative.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e2e_tests/profileTestsAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/profileTestsAdmin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e2e_tests/profileTestsUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/profileTestsUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/signupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/signupTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/signupTestsNegative.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/signupTestsNegative.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +57,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.NodeInterpreter" value="project" />
     <property name="prettierjs.PrettierConfiguration.Package" value="/usr/lib/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -79,12 +78,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.loginTests.js">
     <configuration name="forgetpasswordTests.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" working-dir="$PROJECT_DIR$/e2e_tests">
+      <method v="2" />
+    </configuration>
+    <configuration name="loginTests.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/e2e_tests/loginTests.js" working-dir="$PROJECT_DIR$/e2e_tests">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.loginTests.js" />
         <item itemvalue="Node.js.forgetpasswordTests.js" />
       </list>
     </recent_temporary>
@@ -112,7 +115,11 @@
       <workItem from="1569936376293" duration="7318000" />
       <workItem from="1570092344916" duration="18994000" />
       <workItem from="1570181927473" duration="1411000" />
-      <workItem from="1570448088949" duration="12655000" />
+      <workItem from="1570448088949" duration="15166000" />
+      <workItem from="1570534363767" duration="2548000" />
+      <workItem from="1570605354680" duration="6418000" />
+      <workItem from="1570694408796" duration="14961000" />
+      <workItem from="1570804794804" duration="265000" />
     </task>
     <servers />
   </component>

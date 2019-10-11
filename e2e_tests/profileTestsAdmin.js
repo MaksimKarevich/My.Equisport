@@ -8,8 +8,8 @@ module.exports = {
 		console.log('Setting up... browser', typeof browser);
 	},
 	after: function (browser) {
-		console.log('Closing down... browser', typeof browser);
 		browser.end();
+		console.log('Closing down... browser', typeof browser);
 	},
 
 	'Profile AdminTests Positive': function (browser) {
@@ -18,7 +18,6 @@ module.exports = {
 			username: 'photographer@email.com',
 			password: 'qwe123qwe'
 		};
-
 		//Elements block
 		const elements = {
 			email: 'input[placeholder="Enter your email here"]',
@@ -51,6 +50,10 @@ module.exports = {
 			userPriceCommercial: '#price_com',
 		};
 
+		function getRandom() {
+			return Math.floor(Math.random() * 15) + 1;
+		}
+
 		browser
 		  //Navigate to Forgot Password page
 		  .url(url)
@@ -74,13 +77,13 @@ module.exports = {
 
 		  //Fill all fields with valid data
 		  .clearValue(profile.userName)
-		  .setValue(profile.userName, 'User Name')
+		  .setValue(profile.userName, 'User Name ' + Date.now())
 		  .clearValue(profile.userStreet)
 		  .setValue(profile.userStreet, 'My Street')
 		  .clearValue(profile.userZipCode)
-		  .setValue(profile.userZipCode, '123456')
+		  .setValue(profile.userZipCode, Date.now() + 99)
 		  .clearValue(profile.userPhone)
-		  .setValue(profile.userPhone, '937-99-92')
+		  .setValue(profile.userPhone, '+1 ' + Date.now())
 		  .clearValue(profile.userCity)
 		  .setValue(profile.userCity, 'My City')
 		  .clearValue(profile.userCountry)
@@ -97,19 +100,19 @@ module.exports = {
 		  //Fill the prices fields
 		  .setValue(profile.userPriceSmall, ['', [browser.Keys.CONTROL, "a"]])
 		  .keys('\ue003')
-		  .setValue(profile.userPriceSmall, '5')
+		  .setValue(profile.userPriceSmall, getRandom())
 		  .setValue(profile.userPriceMedium, ['', [browser.Keys.CONTROL, "a"]])
 		  .keys('\ue003')
-		  .setValue(profile.userPriceMedium, '10')
+		  .setValue(profile.userPriceMedium, getRandom())
 		  .setValue(profile.userPriceLarge, ['', [browser.Keys.CONTROL, "a"]])
 		  .keys('\ue003')
-		  .setValue(profile.userPriceLarge, '15')
+		  .setValue(profile.userPriceLarge, getRandom())
 		  .setValue(profile.userPriceOriginal, ['', [browser.Keys.CONTROL, "a"]])
 		  .keys('\ue003')
-		  .setValue(profile.userPriceOriginal, '3')
+		  .setValue(profile.userPriceOriginal, getRandom())
 		  .setValue(profile.userPriceCommercial, ['', [browser.Keys.CONTROL, "a"]])
 		  .keys('\ue003')
-		  .setValue(profile.userPriceCommercial, '1')
+		  .setValue(profile.userPriceCommercial, getRandom())
 		  .click(elements.buttonSaveProfile)
 		  .waitForElementVisible(elements .messageSuccess, 5000, false, function () {},
 			'A success message is displayed')

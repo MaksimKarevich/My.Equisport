@@ -1,12 +1,16 @@
 module.exports = {
+
+  //commands block
+  '@disabled': false, // true - will disable this test
   "@tags": ["all", "profile", "positive"],
+  //The block that will be launched before the browser starts
   before: function(browser) {
     console.log("Setting up... browser", typeof browser);
   },
-
+  //The block that will be launched after the browser end working
   after: function(browser) {
-    console.log("Closing down... browser", typeof browser);
     browser.end();
+    console.log("Closing down... browser", typeof browser);
   },
 
   "Profile UserTests Positive": function(browser) {
@@ -15,6 +19,7 @@ module.exports = {
       username: "customer@email.com",
       password: "qwe123qwe"
     };
+    //Page elements
     const elements = {
       email: 'input[placeholder="Enter your email here"]',
       password: 'input[placeholder="Enter your password here"]',
