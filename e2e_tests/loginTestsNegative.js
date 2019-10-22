@@ -3,7 +3,7 @@
 // These elements used because .clearValue is not worked properly
 
 module.exports = {
-  "@tags": ["all", "login", "negative"],
+  "@tags": ["all", "login", "lnegative"],
 
   before: function(browser) {
     console.log("Setting up... browser", typeof browser);
@@ -52,7 +52,7 @@ module.exports = {
       .assert.containsText(elements.errorMessage, message.emailRequired, message.emailRequired)
       .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired)
 
-      //Fill the email field with invalid data
+      //Fill the email field with invalid data and empty password
       .setValue(elements.email, nickname)
       .click(elements.buttonLogin)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
@@ -76,7 +76,7 @@ module.exports = {
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid, message.valid)
 
-      //Login with incorrect password
+      //Login with correct email and incorrect password
       .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
       .keys('\ue003')
       .setValue(elements.email, input.username)
@@ -84,6 +84,15 @@ module.exports = {
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.wrongEmailOrPassword, message.wrongEmailOrPassword)
+
+      //Login with correct email and empty password
+      .setValue(elements.password, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, input.username)
+      .click(elements.buttonLogin)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired)
 
       //Login with correct data
       .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])

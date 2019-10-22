@@ -113,14 +113,29 @@ module.exports = {
       //Valid password and different invalid emails
       .setValue(elements.password, input.password)
       .setValue(elements.passwordRepeat, input.password)
+      //String
+      .setValue(elements.email, "email.domain.com")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid, "Result - " + message.valid)
+      //Missing address
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, "@domain.com")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid, "Result - " + message.valid)
       //Missing domain 1
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
       .setValue(elements.email, "email@")
       .click(elements.buttonSignUp)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid, "Result - " + message.valid)
       //Missing domain 2
-
       // .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
       // .keys('\ue003')
       // .setValue(elements.email, "email@domain")
@@ -128,7 +143,6 @@ module.exports = {
       // .waitForElementVisible(elements.errorMessage, 5000, message.present)
       // .assert.elementPresent(elements.errorMessage, message.displayed)
       // .assert.containsText(elements.errorMessage, message.valid, "Result - " + message.valid)
-
       //Missing domain 3
       .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
       .keys('\ue003')
@@ -202,13 +216,13 @@ module.exports = {
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
       // //Garbage
-      // .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
-      // .keys('\ue003')
-      // .setValue(elements.email, "te\"(),:;<>@[\]st@domain.com")
-      // .click(elements.buttonSignUp)
-      // .waitForElementVisible(elements.errorMessage, 5000, message.present)
-      // .assert.elementPresent(elements.errorMessage, message.displayed)
-      // .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .keys('\ue003')
+      .setValue(elements.email, "te\"(),:;<>@[\]st@domain.com")
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,"Result - " + message.valid)
       //Copy-paste from address book
       .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
       .keys('\ue003')

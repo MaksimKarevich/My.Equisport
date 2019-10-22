@@ -36,12 +36,6 @@ module.exports = {
       emailSent: 'div[class=\'FormHeader-sc-13q6vh5-0 fZirzj\']',
     };
 
-    function clearField(selector) {
-        browser.setValue(selector, ['', [browser.Keys.CONTROL, "a"]]);
-        browser.keys('\ue003');
-        console.log('Field is clear');
-    }
-
     browser
       //Navigate to Forgot Password page
       .url(url)
