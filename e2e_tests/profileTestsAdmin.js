@@ -13,7 +13,7 @@ module.exports = {
 	},
 
 	'Profile AdminTests Positive': function (browser) {
-		const url = 'http://ec2-13-48-149-152.eu-north-1.compute.amazonaws.com/';
+		const url = 'http://localhost:3000/';
 		const input = {
 			username: 'photographer@email.com',
 			password: 'qwe123qwe'
@@ -51,28 +51,24 @@ module.exports = {
 		};
 
 		function getRandom() {
-			return Math.floor(Math.random() * 15) + 1;
+			return Math.floor(Math.random() * 2500) + 1;
 		}
 
 		browser
 		  //Navigate to Forgot Password page
 		  .url(url)
-		  .waitForElementVisible(elements.textButtonLogin, 5000, false, function () {},
-			'Login button is visible')
+		  .waitForElementVisible(elements.textButtonLogin, 5000, 'Login button is visible')
 		  .click(elements.textButtonLogin)
 		  .assert.urlContains('/auth/login','You are on the Login page')
-		  .waitForElementVisible(elements.email, 5000, false, function () {},
-			'Email field is visible')
+		  .waitForElementVisible(elements.email, 5000, 'Email field is visible')
 		  .setValue(elements.email, input.username)
 		  .setValue(elements.password, input.password)
 		  .click(elements.buttonLogin)
-		  .waitForElementVisible(elements.searchField, 5000, false, function () {},
-			'Search field is visible')
+		  .waitForElementVisible(elements.searchField, 5000, 'Search field is visible')
 
 		  //Navigate to Profile
 		  .click(elements.textButtonProfile)
-		  .waitForElementVisible(elements.profileBody, 5000, false, function () {},
-			'The profile page is loaded')
+		  .waitForElementVisible(elements.profileBody, 5000, 'The profile page is loaded')
 		  .assert.urlContains('/dashboard/profile','You are on the Dashboard Profile page')
 
 		  //Fill all fields with valid data
@@ -114,8 +110,7 @@ module.exports = {
 		  .keys('\ue003')
 		  .setValue(profile.userPriceCommercial, getRandom())
 		  .click(elements.buttonSaveProfile)
-		  .waitForElementVisible(elements .messageSuccess, 5000, false, function () {},
-			'A success message is displayed')
+		  .waitForElementVisible(elements .messageSuccess, 5000, 'A success message is displayed')
 		  .assert.containsText(elements.messageSuccess, 'Profile successfully updated!',
 		  'Profile successfully updated!')
 	},

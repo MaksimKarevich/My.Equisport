@@ -2,7 +2,7 @@ module.exports = {
 
   //commands block
   '@disabled': false, // true - will disable this test
-  "@tags": ["all", "profile", "positive"],
+  "@tags": ["all", "profile", "ppositive"],
   //The block that will be launched before the browser starts
   before: function(browser) {
     console.log("Setting up... browser", typeof browser);
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   "Profile UserTests Positive": function(browser) {
-    const url = "http://ec2-13-48-149-152.eu-north-1.compute.amazonaws.com/";
+    const url = "http://localhost:3000/";
     const input = {
       username: "customer@email.com",
       password: "qwe123qwe"
@@ -38,22 +38,18 @@ module.exports = {
     browser
       //Navigate to Forgot Password page
       .url(url)
-      .waitForElementVisible(elements.textButtonLogin, 5000, false, function() {},
-          "Login button is visible")
+      .waitForElementVisible(elements.textButtonLogin, 5000, "Login button is visible")
       .click(elements.textButtonLogin)
       .assert.urlContains("/auth/login","You are on the Login page")
-      .waitForElementVisible(elements.email, 5000, false, function() {},
-        "Email field is visible")
+      .waitForElementVisible(elements.email, 5000, "Email field is visible")
       .setValue(elements.email, input.username)
       .setValue(elements.password, input.password)
       .click(elements.buttonLogin)
-      .waitForElementVisible(elements.searchField, 5000, false, function() {},
-        "Search field is visible")
+      .waitForElementVisible(elements.searchField, 5000, "Search field is visible")
 
 	  //Navigate to Profile
       .click(elements.textButtonProfile)
-      .waitForElementVisible(elements.fieldCurPassword, 5000, false, function() {},
-        "Current password field is visible")
+      .waitForElementVisible(elements.fieldCurPassword, 5000, "Current password field is visible")
       .assert.urlContains("/profile","You are on the Profile page")
 
 	  //Fill all fields with valid data
@@ -61,14 +57,8 @@ module.exports = {
       .setValue(elements.fieldNewPassword, input.password)
       .setValue(elements.fieldRepeatPassword, input.password)
       .click(elements.buttonSave)
-      .waitForElementVisible(elements.messageSuccess, 5000, false, function() {},
-            "Success message is visible")
-      .assert.elementPresent(elements.messageSuccess,"A success message is shown")
-      .assert.containsText(elements.messageSuccess,"Your password successfully updated!",
-        "Password changed successfully")
       .click(elements.textButtonLogout)
-      .waitForElementVisible(elements.textButtonLogin, 5000, false, function() {},
-        "You are logged out"
+      .waitForElementVisible(elements.textButtonLogin, 5000, "You are logged out"
       );
   },
 };

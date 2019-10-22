@@ -15,7 +15,7 @@ module.exports = {
   },
 
   "Login Tests Negative": function(browser) {
-    const url = "http://ec2-13-48-149-152.eu-north-1.compute.amazonaws.com/";
+    const url = "http://localhost:3000/";
     const nickname = "test" + Date.now();
     const input = {
       username: "customer@email.com",
@@ -41,23 +41,21 @@ module.exports = {
     browser
       //Navigate to Login page
       .url(url)
-      .waitForElementVisible(elements.textButtonLogin, 5000, false, function() {},
-        "The Login button is present")
+      .waitForElementVisible(elements.textButtonLogin, 5000, "The Login button is present")
       .click(elements.textButtonLogin)
-      .waitForElementVisible(elements.email, 5000, false, function() {},
-        "The Email field is present")
+      .waitForElementVisible(elements.email, 5000, "The Email field is present")
       .assert.urlContains("/auth/login", "You are on the Login page")
 
       //Send empty form
       .click(elements.buttonLogin)
-      .waitForElementVisible(elements.errorMessage, 5000, false, function() {}, message.present)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.containsText(elements.errorMessage, message.emailRequired, message.emailRequired)
       .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired)
 
       //Fill the email field with invalid data
       .setValue(elements.email, nickname)
       .click(elements.buttonLogin)
-      .waitForElementVisible(elements.errorMessage, 5000, false, function() {}, message.present)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid, message.valid)
       .assert.containsText(elements.errorMessage, message.passwordRequired, message.passwordRequired)
@@ -67,14 +65,14 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.password, "q")
       .click(elements.buttonLogin)
-      .waitForElementVisible(elements.errorMessage, 5000, false, function() {}, message.present)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.emailRequired, message.emailRequired)
 
       //Fill both field with invalid data
       .setValue(elements.email, nickname)
       .click(elements.buttonLogin)
-      .waitForElementVisible(elements.errorMessage, 5000, false, function() {}, message.present)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid, message.valid)
 
@@ -83,8 +81,7 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, input.username)
       .click(elements.buttonLogin)
-      .waitForElementVisible(elements.errorMessage, 5000, false, function() {}, message.present)
-      .pause(500)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.wrongEmailOrPassword, message.wrongEmailOrPassword)
 
@@ -96,11 +93,9 @@ module.exports = {
       .setValue(elements.email, input.username)
       .setValue(elements.password, input.password)
       .click(elements.buttonLogin)
-      .waitForElementVisible(elements.textButtonLogout, 5000, false, function () {},
-        'You are logged in')
+      .waitForElementVisible(elements.textButtonLogout, 5000, 'You are logged in')
       .assert.elementPresent(elements.textButtonLogout, 'The Logout button is present')
       .click(elements.textButtonLogout)
-      .waitForElementVisible(elements.textButtonLogin, 5000, false, function () {},
-        'You are logged out')
+      .waitForElementVisible(elements.textButtonLogin, 5000, 'You are logged out')
   },
 };

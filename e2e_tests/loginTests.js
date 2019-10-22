@@ -11,10 +11,10 @@ module.exports = {
 
   "Login Test Positive": function(browser) {
     const input = {
-      username: "anyemail@email.com",
-      password: "QWE123qwe"
+      username: "customer@email.com",
+      password: "qwe123qwe"
     };
-    const url = "http://ec2-13-48-149-152.eu-north-1.compute.amazonaws.com";
+    const url = "http://localhost:3000/";
     const elements = {
       email: 'input[placeholder="Enter your email here"]',
       password: 'input[placeholder="Enter your password here"]',
@@ -25,20 +25,16 @@ module.exports = {
 
     browser
       .url(url)
-      .waitForElementVisible(elements.textButtonLogin, 5000, false, function() {},
-        "Login button is visible")
+      .waitForElementVisible(elements.textButtonLogin, 5000, "Login button is visible")
       .click(elements.textButtonLogin)
       .assert.urlContains("/auth/login", "You are on the Login page")
-      .waitForElementVisible(elements.email, 5000, false, function() {},
-        "Email field is visible")
+      .waitForElementVisible(elements.email, 5000, "Email field is visible")
       .setValue(elements.email, input.username)
       .setValue(elements.password, input.password)
       .click(elements.buttonLogin)
-      .waitForElementVisible(elements.textButtonLogout, 5000, false, function() {},
-        "Logout button is visible")
+      .waitForElementVisible(elements.textButtonLogout, 5000, "Logout button is visible")
       .click(elements.textButtonLogout)
-      .waitForElementVisible(elements.textButtonLogin, 5000, false, function() {},
-        "You are logged out"
+      .waitForElementVisible(elements.textButtonLogin, 5000, "You are logged out"
       );
   },
 };
