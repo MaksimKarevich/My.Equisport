@@ -1,5 +1,5 @@
 module.exports = {
-  '@tags': ['all', 'signup', 'spositive'],
+  '@tags': ['all', 'signup', 'positive'],
   before: function(browser) {
     console.log('Setting up... browser', typeof browser);
   },
@@ -18,11 +18,11 @@ module.exports = {
       password: 'QWE123qwe'
     };
     const elements = {
-      textButtonSignUp: '.Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(2)',
+      textButtonSignUp: '.dlxCqy:nth-child(3) .Navigation__NavItem-sc-1cwjzq8-2.dNnfdX:nth-child(2) a:nth-child(1)',
       fieldEmail: 'input[placeholder="Enter your email here"]',
       fieldPassword: 'input[placeholder="Enter your password here"]',
       fieldRepeatPassword: 'input[placeholder="Repeat your password"]',
-      buttonSignUp: 'button[class="FormButton-yq5rye-0 etjSuT"]',
+      buttonSignUp: '.FormContainer-sc-1yympqn-0.dvhynU > div > button',
       buttonLogout: '.Navigation__Dropdown-sc-1cwjzq8-3:nth-child(3)',
     };
 

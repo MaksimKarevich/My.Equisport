@@ -1,219 +1,200 @@
-//.setValue(SELECTOR, ['', [browser.Keys.CONTROL, "a"]])
+//.setValue(SELECTOR, ['', [browser.Keys.CONTROL, 'a']])
 //.keys('\ue003')
 // These elements used because .clearValue is not worked properly
 
 module.exports = {
-  "@tags": ["all", "forgot_password", "fpositive"],
+  '@tags': ['all', 'forgot', 'positive'],
   before: function(browser) {
-    console.log("Setting up... browser", typeof browser);
+    console.log('Setting up... browser', typeof browser);
   },
 
   after: function(browser) {
-    console.log("Closing down... browser", typeof browser);
+    console.log('Closing down... browser', typeof browser);
     browser.end();
   },
 
-  "Forgot Password Tests": function(browser) {
-    const url = "http://localhost:3000/";
-    const nickname = "test" + Date.now();
-    const emailDomain = "domain.com";
+  'Forgot Password Tests': function(browser) {
+    const url = 'http://localhost:3000/';
+    const nickname = 'test' + Date.now();
+    const emailDomain = 'domain.com';
     const input = {
-      username: "anyemail@email.com"
+      username: 'anyemail@email.com'
     };
     const elements = {
-      errorMessage: ".AuthErrorMessage__AuthErrorMessageContainer-vy0jys-0",
-      email: 'input[placeholder="Enter your email here"]',
-      buttonRestore: ".FormButton-yq5rye-0.etjSuT",
-      textButtonLogin: ".Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)",
+      errorMessage: '.AuthErrorMessage__AuthErrorMessageContainer-vy0jys-0',
+      email: "input[placeholder='Enter your email here']",
+      buttonRestore: '.FormContainer-sc-1yympqn-0.dvhynU > div > button',
+      textButtonLogin: '.Navigation__NavigationPanel-sc-1cwjzq8-1.dlxCqy:nth-child(3) .Navigation__NavItem-sc-1cwjzq8-2.dNnfdX:nth-child(1) > a:nth-child(1)',
       textButtonForgot: '.LoginForm__ForgotPassword-sc-6jjc91-0.fudhHS:nth-child(6) a:nth-child(1)',
     };
     const message = {
-      displayed: "The error message is displayed.",
-      required: "The email field is required.",
-      valid: "The email must be a valid email address.",
-      couldNotSent: "Email could not sent to this email address.",
-      present: "The error message is present",
-      emailSent: 'div[class=\'FormHeader-sc-13q6vh5-0 fZirzj\']',
+      displayed: 'The error message is displayed.',
+      required: 'The email field is required.',
+      valid: 'The email must be a valid email address.',
+      couldNotSent: 'Email could not sent to this email address.',
+      present: 'The error message is present',
+      emailSent: '.FormContainer-sc-1yympqn-0.dvhynU > div > .FormHeader-sc-13q6vh5-0.fZirzj',
     };
 
     browser
       //Navigate to Forgot Password page
       .url(url)
-      .waitForElementVisible(elements.textButtonLogin, 5000, "The Login button is present")
+      .waitForElementVisible(elements.textButtonLogin, 5000, 'The Login button is present')
       .click(elements.textButtonLogin)
-      .waitForElementVisible(elements.textButtonForgot, 5000, "The Forgot Password button is present")
+      .waitForElementVisible(elements.textButtonForgot, 5000, 'The Forgot Password button is present')
       .click(elements.textButtonForgot)
-      .assert.urlContains("/forgot-password","You are on the Forgot Password page")
-      .waitForElementVisible(elements.email, 5000, "The Email field is present")
+      .assert.urlContains('/forgot-password','You are on the Forgot Password page')
+      .waitForElementVisible(elements.email, 5000, 'The Email field is present')
 
       //Negative tests for email field
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.required,
-        "Result - " + message.required)
+      .assert.containsText(elements.errorMessage, message.required, 'Result - ' + message.required)
 
       .setValue(elements.email, nickname)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, nickname + "." + nickname)
+      .setValue(elements.email, nickname + '.' + nickname)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + "@")
+      .setValue(elements.email, nickname + '@')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + "@domain")
+      .setValue(elements.email, nickname + '@domain')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.couldNotSent,
-        "Result - " + message.couldNotSent)
+      .assert.containsText(elements.errorMessage, message.couldNotSent, 'Result - ' + message.couldNotSent)
 
-      .setValue(elements.email, ".")
+      .setValue(elements.email, '.')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
-      .setValue(elements.email, "com")
+        'Result - ' + message.valid)
+      .setValue(elements.email, 'com')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.couldNotSent,
-        "Result - " + message.couldNotSent)
+      .assert.containsText(elements.errorMessage, message.couldNotSent, 'Result - ' + message.couldNotSent)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
       .setValue(elements.email, emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, "." + nickname + "@" + emailDomain)
+      .setValue(elements.email, '.' + nickname + '@' + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + ".@" + emailDomain)
+      .setValue(elements.email, nickname + '.@' + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + ".." + nickname + "@" + emailDomain)
+      .setValue(elements.email, nickname + '..' + nickname + '@' + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + "@." + emailDomain)
+      .setValue(elements.email, nickname + '@.' + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + "@-" + emailDomain)
+      .setValue(elements.email, nickname + '@-' + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + "@domain-.com")
+      .setValue(elements.email, nickname + '@domain-.com')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + "@domain..com")
+      .setValue(elements.email, nickname + '@domain..com')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + "@" + nickname + "@" + emailDomain)
+      .setValue(elements.email, nickname + '@' + nickname + '@' + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, "#@%^%#$@#$@#.com")
+      .setValue(elements.email, '#@%^%#$@#$@#.com')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, "Joe Smith" + nickname + "@" + emailDomain)
+      .setValue(elements.email, 'Joe Smith' + nickname + '@' + emailDomain)
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.valid,
-        "Result - " + message.valid)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
 
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
-      .setValue(elements.email, nickname + "@" + emailDomain + "(Some text)")
+      .setValue(elements.email, nickname + '@' + emailDomain + '(Some text)')
       .click(elements.buttonRestore)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
-      .assert.containsText(elements.errorMessage, message.couldNotSent,
-        "Result - " + message.couldNotSent)
+      .assert.containsText(elements.errorMessage, message.couldNotSent, 'Result - ' + message.couldNotSent)
 
-      //Positive test for email field
-      .setValue(elements.email, ['', [browser.Keys.CONTROL, "a"]])
+      //Positive test
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
       .setValue(elements.email, input.username)
       .click(elements.buttonRestore)
       .waitForElementVisible(message.emailSent, 5000, message.present)
-      .assert.elementPresent(message.emailSent,"Succsess mesage is present")
-      .assert.containsText(message.emailSent, "Email sent!",
-        "Result - Email sent!");
+      .assert.elementPresent(message.emailSent,'Succsess mesage is present')
+      .assert.containsText(message.emailSent, 'Email sent!', 'Result - Email sent!');
   },
 };

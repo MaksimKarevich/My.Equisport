@@ -1,4 +1,4 @@
-//.setValue(SELECTOR, ['', [browser.Keys.CONTROL, "a"]])
+//.setValue(SELECTOR, ['', [browser.Keys.CONTROL, 'a']])
 //.keys('\ue003')
 // These elements used because .clearValue is not worked properly
 module.exports = {
@@ -22,11 +22,11 @@ module.exports = {
 		const elements = {
 			email: 'input[placeholder="Enter your email here"]',
 			password: 'input[placeholder="Enter your password here"]',
-			textButtonLogin: '.Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(1)',
-			textButtonProfile: '.Navigation__NavigationPanel-sc-1cwjzq8-1:nth-child(2) .Navigation__NavItem-sc-1cwjzq8-2:nth-child(2)',
-			buttonLogin: 'button[class="FormButton-yq5rye-0 etjSuT"]',
+			textButtonLogin: 'div.Navigation__NavigationPanel-sc-1cwjzq8-1.dlxCqy:nth-child(3) div.Navigation__NavItem-sc-1cwjzq8-2.dNnfdX:nth-child(1) > a:nth-child(1)',
+			textButtonProfile: '.Navigation__NavigationPanel-sc-1cwjzq8-1.dlxCqy:nth-child(3) .Navigation__NavItem-sc-1cwjzq8-2.dNnfdX:nth-child(2) a:nth-child(1)',
+			buttonLogin: '.FormContainer-sc-1yympqn-0.dvhynU > div > button',
 			searchField: 'input[placeholder="Search here"]',
-			buttonSaveProfile: 'button[class="FormButton-yq5rye-0 Profile__SaveProfileButton-sc-1ndjmos-15 WOXPl"]',
+			buttonSaveProfile: '.Profile__SaveProfileButtonWrapper-sc-1ndjmos-14.izFoPo > button',
 			messageSuccess: 'div[class="Profile__SuccessMessage-sc-1ndjmos-17 bjlJXu"]',
 			profileBody: 'div[class = "Profile__ProfileContainer-sc-1ndjmos-0 fMnNiO"]'
 		};
@@ -94,19 +94,19 @@ module.exports = {
 		  .setValue(profile.userPayPal, input.username)
 
 		  //Fill the prices fields
-		  .setValue(profile.userPriceSmall, ['', [browser.Keys.CONTROL, "a"]])
+		  .setValue(profile.userPriceSmall, ['', [browser.Keys.CONTROL, 'a']])
 		  .keys('\ue003')
 		  .setValue(profile.userPriceSmall, getRandom())
-		  .setValue(profile.userPriceMedium, ['', [browser.Keys.CONTROL, "a"]])
+		  .setValue(profile.userPriceMedium, ['', [browser.Keys.CONTROL, 'a']])
 		  .keys('\ue003')
 		  .setValue(profile.userPriceMedium, getRandom())
-		  .setValue(profile.userPriceLarge, ['', [browser.Keys.CONTROL, "a"]])
+		  .setValue(profile.userPriceLarge, ['', [browser.Keys.CONTROL, 'a']])
 		  .keys('\ue003')
 		  .setValue(profile.userPriceLarge, getRandom())
-		  .setValue(profile.userPriceOriginal, ['', [browser.Keys.CONTROL, "a"]])
+		  .setValue(profile.userPriceOriginal, ['', [browser.Keys.CONTROL, 'a']])
 		  .keys('\ue003')
 		  .setValue(profile.userPriceOriginal, getRandom())
-		  .setValue(profile.userPriceCommercial, ['', [browser.Keys.CONTROL, "a"]])
+		  .setValue(profile.userPriceCommercial, ['', [browser.Keys.CONTROL, 'a']])
 		  .keys('\ue003')
 		  .setValue(profile.userPriceCommercial, getRandom())
 		  .click(elements.buttonSaveProfile)
