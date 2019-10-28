@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2865910f-8d6e-432f-b5f4-34b493a0d6e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/forgetpasswordTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/loginTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/loginTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/loginTestsNegative.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/loginTestsNegative.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e2e_tests/profileTestsAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/profileTestsAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/profileTestsUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/profileTestsUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/signupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/signupTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e_tests/signupTestsNegative.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e_tests/signupTestsNegative.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nightwatch.json" beforeDir="false" afterPath="$PROJECT_DIR$/nightwatch.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +40,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Projects/equisport/equisport_frontend" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -62,8 +58,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -126,7 +122,10 @@
       <workItem from="1571750949294" duration="6242000" />
       <workItem from="1571839538227" duration="6000" />
       <workItem from="1571841695258" duration="501000" />
-      <workItem from="1571903225085" duration="3323000" />
+      <workItem from="1571903225085" duration="3737000" />
+      <workItem from="1571909365815" duration="1220000" />
+      <workItem from="1571991655263" duration="18000" />
+      <workItem from="1572256053224" duration="2807000" />
     </task>
     <servers />
   </component>
