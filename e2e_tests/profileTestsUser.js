@@ -2,7 +2,7 @@ module.exports = {
 
   //commands block
   '@disabled': false, // true - will disable this test
-  '@tags': ['all', 'profile', 'positive', '3'],
+  '@tags': ['all', 'profile', 'positive', '5'],
   //The block that will be launched before the browser starts
   before: function(browser) {
     console.log('Setting up... browser', typeof browser);
@@ -27,7 +27,7 @@ module.exports = {
       textButtonProfile: '.Navigation__NavigationPanel-sc-1cwjzq8-1.dlxCqy:nth-child(3) .Navigation__NavItem-sc-1cwjzq8-2.dNnfdX:nth-child(2) a:nth-child(1)',
       textButtonLogout: '.Navigation__Dropdown-sc-1cwjzq8-3:nth-child(3)',
       buttonLogin: '.FormContainer-sc-1yympqn-0.dvhynU > div > button',
-      buttonSave: '.CustomerProfile__ButtonWrapper-sc-11t8w6m-12.clLiXf > button',
+      buttonSave: ':nth-child(4) > button.FormButton-yq5rye-0.iIbtse',
       searchField: "input[placeholder='Search here']",
       fieldCurPassword: "input[placeholder='Current password']",
       fieldNewPassword: "input[placeholder='New password']",

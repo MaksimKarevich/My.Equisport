@@ -3,7 +3,7 @@
 // These elements used because .clearValue is not worked properly
 module.exports = {
 
-	'@tags': ['all', 'profile', 'positive'],
+	'@tags': ['all', 'profile', 'positive', '4'],
 	before: function (browser) {
 		console.log('Setting up... browser', typeof browser);
 	},
@@ -26,8 +26,8 @@ module.exports = {
 			textButtonProfile: '.Navigation__NavigationPanel-sc-1cwjzq8-1.dlxCqy:nth-child(3) .Navigation__NavItem-sc-1cwjzq8-2.dNnfdX:nth-child(2) a:nth-child(1)',
 			buttonLogin: '.FormContainer-sc-1yympqn-0.dvhynU > div > button',
 			searchField: 'input[placeholder="Search here"]',
-			buttonSaveProfile: '.Profile__SaveProfileButtonWrapper-sc-1ndjmos-14.izFoPo > button',
-			messageSuccess: 'div[class="Profile__SuccessMessage-sc-1ndjmos-17 bjlJXu"]',
+			buttonSaveProfile: '.Profile__SaveProfileButtonWrapper-sc-1ndjmos-15 > .FormButton-yq5rye-0',
+			messageSuccess: ':nth-child(1) .Profile__ProfileContainer-sc-1ndjmos-0.fMnNiO > .Profile__SuccessMessage-sc-1ndjmos-18.bFqXkN',
 			profileBody: 'div[class = "Profile__ProfileContainer-sc-1ndjmos-0 fMnNiO"]'
 		};
 
