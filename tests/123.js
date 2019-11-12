@@ -1,29 +1,25 @@
 module.exports = {
-
     '@tags': ['test'],
-    before: function (browser) {
-        console.log('Setting up... browser', typeof browser)
-    },
-
-    after: function (browser) {
-        console.log('Closing down... browser', typeof browser)
-    },
-
-    'Test Test': function (browser) {
-        const url = 'http://ec2-13-48-149-152.eu-north-1.compute.amazonaws.com/';
-        const emailDomain = 'test.com';
-        const nickname = 'test'+ Date.now();
-        const input = {
-            username: 'anyemail@email.com',
-            password: 'QWE123qwe',
-        };
-
+    'Demo test Google' : function (browser) {
         browser
-            .url(url)
-            .waitForElementVisible('input[placeholder="Search here"]')
-            .setValue('input[placeholder="Search here"]', ' something')
-            .assert.valueContains('input[placeholder="Search here"]', 'something')
-            .clearValue('input[placeholder="Search here"]')
-            .assert.attributeContains('input[placeholder="Search here"]', 'value', '')
-    },
+          .url('https://google.no')
+          .pause(1000);
+
+        // expect element <body> to be present in 1000ms
+        browser.expect.element('body').to.be.present.before(1000);
+
+        // expect element <#lst-ib> to have css property 'display'
+        browser.expect.element('#lst-ib').to.have.css('display');
+
+        // expect element <body> to have attribute 'class' which contains text 'vasq'
+        browser.expect.element('body').to.have.attribute('class').which.contains('vasq');
+
+        // expect element <#lst-ib> to be an input tag
+        browser.expect.element('#lst-ib').to.be.an('input');
+
+        // expect element <#lst-ib> to be visible
+        browser.expect.element('#lst-ib').to.be.visible;
+
+        browser.end();
+    }
 };

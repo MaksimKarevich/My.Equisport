@@ -1,0 +1,61 @@
+//.setValue(SELECTOR, ['', [browser.Keys.CONTROL, 'a']])
+//.keys('\ue003')
+// These elements used because .clearValue is not worked properly
+
+module.exports = {
+	'@tags': ['all', 'cart', 'positive', '2'],
+	before: function(browser) {
+		console.log('Setting up... browser', typeof browser);
+	},
+
+	after: function(browser) {
+		console.log('Closing down... browser', typeof browser);
+		browser.end();
+	},
+
+	'Forgot Password Tests': function(browser) {
+		const url = 'http://localhost:3000/';
+		const input = {
+			username: 'customer@email.com',
+			password: 'qwe123qwe'
+		};
+		const elements = {
+			email: "input[placeholder='Enter your email here']",
+			password: "input[placeholder='Enter your password here']",
+			textButtonLogin: 'div.Navigation__NavigationPanel-sc-1cwjzq8-1.dlxCqy:nth-child(3) div.Navigation__NavItem-sc-1cwjzq8-2.dNnfdX:nth-child(1) > a:nth-child(1)',
+			textButtonLogout: '.Navigation__Dropdown-sc-1cwjzq8-3:nth-child(3)',
+			textButtonCart: 'a[href="/cart"]',
+			buttonLogin: '.FormContainer-sc-1yympqn-0.dvhynU > div > button',
+			filterDressage: 'a[href="/search?filter=dressage"]',
+			filterDressageItem: 'div > div > div div > svg[role="img"]',
+			firstPhoto: 'div.PageContainer-sc-24iwb2-0.jYeKbh div.ContentContainer-ga6x55-0.iqRxKD div.PhotosGrid__PhotoGridContainer-ehyh62-0.iPoKrT div.PhotosGrid__ContentContainer-ehyh62-1.kSPiEo div.PhotosGrid__Row-ehyh62-2.hJLEkS div.PhotosGrid__Card-ehyh62-3.eNadmO:nth-child(1) div.PhotosGrid__PhotoWrapper-ehyh62-4.hKQLPD > div.PhotosGrid__Photo-ehyh62-5.eltQaN',
+			btnCart: 'div.PageContainer-sc-24iwb2-0.jYeKbh div.ContentContainer-ga6x55-0.iqRxKD div.PhotosGrid__PhotoGridContainer-ehyh62-0.iPoKrT div.PreviewModal__PreviewModalContainer-qmxqix-0.fBZCgB div.PreviewModal__ModalBody-qmxqix-2.hJEPzE div.PreviewModal__PhotoPreview-qmxqix-3.hpxICA > div.PreviewModal__ShoppingCartContainer-qmxqix-7.fiDzIq:nth-child(5)',
+			messWrong: 'body:nth-child(2) div:nth-child(1) div.AlertComponent__AlertContainer-sc-12m40mf-0.hnTmRp > div.AlertComponent__StyledAlert-sc-12m40mf-2.AlertComponent__ErrorAlert-sc-12m40mf-4.fXTLMq',
+			chooseSize: 'div.PageContainer-sc-24iwb2-0.jYeKbh div.ContentContainer-ga6x55-0.iqRxKD div.ShoppingCart__ShoppingCartContainer-mtnlvu-0.dvRZSq div.ShoppingCart__ContentContainer-mtnlvu-1.kOpRAa div.ShoppingCart__Row-mtnlvu-3.jnLexf:nth-child(2) div.ShoppingCart__OptionsWrapper-mtnlvu-7.gbWADn div.ShoppingCart__SizeColumnHeader-mtnlvu-8.ShoppingCart__SizeColumnContent-mtnlvu-10.gRakOh div.ShoppingCart__SelectWrapper-mtnlvu-15.cxmGln > div.ShoppingCart__SizeSelect-mtnlvu-16.fvuvSq'
+		};
+		browser
+		  //Navigate to profile
+		  .url(url)
+		  .waitForElementVisible(elements.textButtonLogin, 5000, 'Login button is visible')
+		  .click(elements.textButtonLogin)
+		  .assert.urlContains('/auth/login', 'You are on the Login page')
+		  .waitForElementVisible(elements.email, 5000, 'Email field is visible')
+		  .setValue(elements.email, input.username)
+		  .setValue(elements.password, input.password)
+		  .click(elements.buttonLogin)
+		  .waitForElementVisible(elements.textButtonLogout, 5000, 'Logout button is visible')
+
+		  //Add to Cart
+		  .click(elements.filterDressage)
+		  .waitForElementVisible(elements.filterDressageItem, 5000, 'Filters are visible')
+		  .click(elements.firstPhoto)
+		  .waitForElementVisible(elements.btnCart, 5000, 'You can add the photo to Cart')
+		  .click(elements.btnCart)
+		  .waitForElementNotPresent(elements.btnCart, 5000, 'The photo window is closed!')
+		  .click(elements.textButtonCart)
+		  .waitForElementVisible(elements.chooseSize, 5000, 'You have the photos in Cart :)')
+		  .assert.urlContains('/cart', 'You are on the Cart page')
+		  .click(elements.textButtonLogout)
+		  .waitForElementVisible(elements.textButtonLogin, 5000, 'You are logged out')
+	},
+};

@@ -3,7 +3,7 @@
 // These elements used because .clearValue is not worked properly
 
 module.exports = {
-  '@tags': ['all', 'forgot', 'positive', '1'],
+  '@tags': ['all', 'forgot', 'positive'],
   before: function(browser) {
     console.log('Setting up... browser', typeof browser);
   },
@@ -193,8 +193,11 @@ module.exports = {
       .keys('\ue003')
       .setValue(elements.email, input.username)
       .click(elements.buttonRestore)
-      .pause(1000)
+      .pause(3000)
       .waitForElementVisible(message.emailSent, 5000, message.present)
+      // .getText(message.emailSent, function (result) {
+      //   console.log(' Result - ', result.value)
+      // })
       .assert.elementPresent(message.emailSent,'Succsess mesage is present')
       .assert.containsText(message.emailSent, 'Email sent!', 'Result - Email sent!');
   },

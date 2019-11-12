@@ -1,5 +1,5 @@
 module.exports = {
-  '@tags': ['all', 'login', 'positive', '2'],
+  '@tags': ['all', 'login', 'positive'],
   before: function(browser) {
     console.log('Setting up... browser', typeof browser);
   },
