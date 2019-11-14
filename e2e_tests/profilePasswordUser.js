@@ -2,7 +2,7 @@ module.exports = {
 
   //commands block
   '@disabled': false, // true - will disable this test
-  '@tags': ['all', 'profile', 'positive', '5'],
+  '@tags': ['all', 'profile', 'positive', 'password'],
   //The block that will be launched before the browser starts
   before: function(browser) {
     console.log('Setting up... browser', typeof browser);
@@ -13,7 +13,7 @@ module.exports = {
     console.log('Closing down... browser', typeof browser);
   },
 
-  'Profile UserTests Positive': function(browser) {
+  'Profile User password test': function(browser) {
     const url = 'http://localhost:3000/';
     const input = {
       username: 'customer@email.com',

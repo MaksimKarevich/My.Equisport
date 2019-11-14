@@ -18,7 +18,7 @@ module.exports = {
     const nickname = 'test' + Date.now();
     const emailDomain = 'domain.com';
     const input = {
-      username: 'anyemail@email.com'
+      username: 'customer@email.com'
     };
     const elements = {
       errorMessage: '.AuthErrorMessage__AuthErrorMessageContainer-vy0jys-0',
