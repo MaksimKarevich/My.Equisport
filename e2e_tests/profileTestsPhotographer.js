@@ -3,7 +3,7 @@
 // These elements used because .clearValue is not worked properly
 module.exports = {
 
-	'@tags': ['all', 'profile', 'positive'],
+	'@tags': ['all', 'profile', 'positive', '9'],
 	before: function (browser) {
 		console.log('Setting up... browser', typeof browser);
 	},
@@ -80,6 +80,7 @@ module.exports = {
 		  .assert.urlContains('/dashboard/profile','You are on the Dashboard Profile page')
 
 		  //Fill all fields with valid data
+		  .setValue('input[type="file"]', require('path').resolve('/home/maksimk/Downloads/pic_03.png'))
 		  .clearValue(profile.userName)
 		  .setValue(profile.userName, 'Test User ' + today)
 		  .clearValue(profile.userStreet)
@@ -100,6 +101,7 @@ module.exports = {
 		  .setValue(profile.userCompNo, randomData.randomCompNumber)
 		  .clearValue(profile.userPayPal)
 		  .setValue(profile.userPayPal, input.username)
+
 
 		  //Fill the prices fields
 		  .setValue(profile.userPriceSmall, ['', [browser.Keys.CONTROL, 'a']])
