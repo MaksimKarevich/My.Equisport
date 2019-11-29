@@ -24,8 +24,9 @@ module.exports = {
       errorMessage: '.AuthErrorMessage__AuthErrorMessageContainer-vy0jys-0',
       email: "input[placeholder='Enter your email here']",
       buttonRestore: '.FormContainer-sc-1yympqn-0.dvhynU > div > button',
-      textButtonLogin: '.Navigation__NavigationPanel-sc-1cwjzq8-1.dlxCqy:nth-child(3) .Navigation__NavItem-sc-1cwjzq8-2.dNnfdX:nth-child(1) > a:nth-child(1)',
-      textButtonForgot: '.LoginForm__ForgotPassword-sc-6jjc91-0.fudhHS:nth-child(6) a:nth-child(1)',
+      textButtonLogin: 'a[href="/auth/login"]',
+      textButtonForgot: 'a[href="/auth/forgot-password"]',
+      emailSent: '//*[text()[contains(.,\'Email sent!\')]]',
     };
     const message = {
       displayed: 'The error message is displayed.',
@@ -33,7 +34,6 @@ module.exports = {
       valid: 'The email must be a valid email address.',
       couldNotSent: 'Email could not sent to this email address.',
       present: 'The error message is present',
-      emailSent: '.FormContainer-sc-1yympqn-0.dvhynU > div > .FormHeader-sc-13q6vh5-0.fZirzj',
     };
 
     browser
@@ -194,11 +194,9 @@ module.exports = {
       .setValue(elements.email, input.username)
       .click(elements.buttonRestore)
       .pause(3000)
-      .waitForElementVisible(message.emailSent, 5000, message.present)
-      // .getText(message.emailSent, function (result) {
-      //   console.log(' Result - ', result.value)
-      // })
-      .assert.elementPresent(message.emailSent,'Succsess mesage is present')
-      .assert.containsText(message.emailSent, 'Email sent!', 'Result - Email sent!');
+      .useXpath()
+      .waitForElementVisible(elements.emailSent, 5000, message.present)
+      .assert.elementPresent(elements.emailSent,'Succsess mesage is present')
+      .assert.containsText(elements.emailSent, 'Email sent!', 'Result - Email sent!');
   },
 };

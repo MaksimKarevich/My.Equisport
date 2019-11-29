@@ -26,7 +26,7 @@ module.exports = {
       email: "input[placeholder='Enter your email here']",
       password: "input[placeholder='Enter your password here']",
       passwordRepeat: "input[placeholder='Repeat your password']",
-      textButtonSignUp: '.dlxCqy:nth-child(3) .Navigation__NavItem-sc-1cwjzq8-2.dNnfdX:nth-child(2) a:nth-child(1)',
+      textButtonSignUp: 'a[href="/auth/signup"]',
       buttonSignUp: '.FormContainer-sc-1yympqn-0.dvhynU > div > button',
     };
     const message = {
@@ -136,13 +136,13 @@ module.exports = {
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
       //Missing domain 2
-      // .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
-      // .keys('\ue003')
-      // .setValue(elements.email, 'email@domain')
-      // .click(elements.buttonSignUp)
-      // .waitForElementVisible(elements.errorMessage, 5000, message.present)
-      // .assert.elementPresent(elements.errorMessage, message.displayed)
-      // .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
+      .keys('\ue003')
+      .setValue(elements.email, 'email@domain')
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid, 'Result - ' + message.valid)
       //Missing domain 3
       .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
@@ -215,7 +215,7 @@ module.exports = {
       .waitForElementVisible(elements.errorMessage, 5000,  message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,'Result - ' + message.valid)
-      // //Garbage
+      //Garbage
       .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
       .keys('\ue003')
       .setValue(elements.email, 'te\'(),:;<>@[\]st@domain.com')
@@ -232,13 +232,13 @@ module.exports = {
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.valid,'Result - ' + message.valid)
       //Superfluous text
-      // .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
-      // .keys('\ue003')
-      // .setValue(elements.email, input.username + '(Joe Smith)')
-      // .click(elements.buttonSignUp)
-      // .waitForElementVisible(elements.errorMessage, 5000, message.present)
-      // .assert.elementPresent(elements.errorMessage, message.displayed)
-      // .assert.containsText(elements.errorMessage, message.valid,'Result - ' + message.valid)
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
+      .keys('\ue003')
+      .setValue(elements.email, input.username + '(Joe Smith)')
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, message.valid,'Result - ' + message.valid)
       //Fill email with valid data and invalid passwords
       .clearValue(elements.email)
       .clearValue(elements.password)
@@ -260,7 +260,6 @@ module.exports = {
       .setValue(elements.password, 'TestT')
       .click(elements.buttonSignUp)
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
-      .pause(500)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.numAndLet,'Result - ' + message.numAndLet)
       .assert.containsText(elements.errorMessage, message.characters6,'Result - ' + message.characters6)
@@ -281,5 +280,20 @@ module.exports = {
       .waitForElementVisible(elements.errorMessage, 5000, message.present)
       .assert.elementPresent(elements.errorMessage, message.displayed)
       .assert.containsText(elements.errorMessage, message.numAndLet,'Result - ' + message.numAndLet)
+      //all clear
+      .setValue(elements.email, ['', [browser.Keys.CONTROL, 'a']])
+      .keys('\ue003')
+      .setValue(elements.password, ['', [browser.Keys.CONTROL, 'a']])
+      .keys('\ue003')
+      .setValue(elements.passwordRepeat, ['', [browser.Keys.CONTROL, 'a']])
+      .keys('\ue003')
+
+      .setValue(elements.email, 'customer@email.com')
+      .setValue(elements.password, input.password)
+      .setValue(elements.passwordRepeat, input.password)
+      .click(elements.buttonSignUp)
+      .waitForElementVisible(elements.errorMessage, 5000, message.present)
+      .assert.elementPresent(elements.errorMessage, message.displayed)
+      .assert.containsText(elements.errorMessage, 'The email has already been taken.','Result - The email has already been taken.')
   },
 };

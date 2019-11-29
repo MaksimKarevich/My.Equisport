@@ -3,7 +3,7 @@
 // These elements used because .clearValue is not worked properly
 
 module.exports = {
-	'@tags': ['all', 'cart', 'positive', '2'],
+	'@tags': ['all', 'cart', 'positive'],
 	before: function(browser) {
 		console.log('Setting up... browser', typeof browser);
 	},
@@ -26,12 +26,11 @@ module.exports = {
 			textButtonLogout: '.Navigation__Dropdown-sc-1cwjzq8-3:nth-child(3)',
 			textButtonCart: 'a[href="/cart"]',
 			buttonLogin: '.FormContainer-sc-1yympqn-0.dvhynU > div > button',
-			filterDressage: 'a[href="/search?filter=dressage"]',
+			filterItem: 'a[href="/search?filter=show_jumping"]',
 			filterDressageItem: 'div > div > div div > svg[role="img"]',
 			firstPhoto: '//body/div[1]/div[1]/div[2]/div[3]/div/div[1]/div[1]',
-			btnCart: 'div.PageContainer-sc-24iwb2-0.jYeKbh div.ContentContainer-ga6x55-0.iqRxKD div.PhotosGrid__PhotoGridContainer-ehyh62-0.iPoKrT div.PreviewModal__PreviewModalContainer-qmxqix-0.fBZCgB div.PreviewModal__ModalBody-qmxqix-2.hJEPzE div.PreviewModal__PhotoPreview-qmxqix-3.hpxICA > div.PreviewModal__ShoppingCartContainer-qmxqix-7.fiDzIq:nth-child(5)',
-			messWrong: 'body:nth-child(2) div:nth-child(1) div.AlertComponent__AlertContainer-sc-12m40mf-0.hnTmRp > div.AlertComponent__StyledAlert-sc-12m40mf-2.AlertComponent__ErrorAlert-sc-12m40mf-4.fXTLMq',
-			chooseSize: 'div.PageContainer-sc-24iwb2-0.jYeKbh div.ContentContainer-ga6x55-0.iqRxKD div.ShoppingCart__ShoppingCartContainer-mtnlvu-0.dvRZSq div.ShoppingCart__ContentContainer-mtnlvu-1.kOpRAa div.ShoppingCart__Row-mtnlvu-3.jnLexf:nth-child(2) div.ShoppingCart__OptionsWrapper-mtnlvu-7.gbWADn div.ShoppingCart__SizeColumnHeader-mtnlvu-8.ShoppingCart__SizeColumnContent-mtnlvu-10.gRakOh div.ShoppingCart__SelectWrapper-mtnlvu-15.cxmGln > div.ShoppingCart__SizeSelect-mtnlvu-16.fvuvSq'
+			btnCart: 'svg[data-icon="cart-plus"]',
+			chooseSize: 'svg[data-icon="sort-down"]',
 		};
 		browser
 		  //Navigate to profile
@@ -46,7 +45,7 @@ module.exports = {
 		  .waitForElementVisible(elements.textButtonLogout, 5000, 'Logout button is visible')
 
 		  //Add to Cart
-		  .click(elements.filterDressage)
+		  .click(elements.filterItem)
 		  .waitForElementVisible(elements.filterDressageItem, 5000, 'Filters are visible')
 		  .useXpath()
 		  .click(elements.firstPhoto)

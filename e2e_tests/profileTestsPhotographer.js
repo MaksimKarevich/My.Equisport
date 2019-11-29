@@ -36,6 +36,7 @@ module.exports = {
 		//Profile fields block
 		const profile = {
 			userName: 'input[name="name"]',
+			userEmail: 'input[name="email"]',
 			userStreet: '#address_street',
 			userZipCode: '#address_zip',
 			userPhone: '#address_phone',
@@ -78,6 +79,24 @@ module.exports = {
 		  .click(elements.textButtonProfile)
 		  .waitForElementVisible(profile.userName, 5000, 'The profile page is loaded')
 		  .assert.urlContains('/dashboard/profile','You are on the Dashboard Profile page')
+
+		  //All elements is present and visible
+		  .assert.elementPresent(profile.userName, 'UserName field is present')
+		  .assert.elementPresent(profile.userEmail, 'Email field is present')
+		  .assert.elementPresent(profile.userStreet, 'Street field is present')
+		  .assert.elementPresent(profile.userZipCode, 'Zipcode field is present')
+		  .assert.elementPresent(profile.userPhone, 'Phone field is present')
+		  .assert.elementPresent(profile.userCity, 'City field is present')
+		  .assert.elementPresent(profile.userCountry, 'Country field is present')
+		  .assert.elementPresent(profile.userCompName, 'CompanyName field is present')
+		  .assert.elementPresent(profile.userCompNo, 'Company No. field is present')
+		  .assert.elementPresent(profile.userCompVat, 'Company VAT field is present')
+		  .assert.elementPresent(profile.userPayPal, 'PayPal field is present')
+		  .assert.elementPresent(profile.userPriceSmall, 'SmallPrice field is present')
+		  .assert.elementPresent(profile.userPriceMedium, 'MediumPrice field is present')
+		  .assert.elementPresent(profile.userPriceLarge, 'LargePrice field is present')
+		  .assert.elementPresent(profile.userPriceOriginal, 'OriginalPrice field is present')
+		  .assert.elementPresent(profile.userPriceCommercial, 'CommercialPrice field is present')
 
 		  //Fill all fields with valid data
 		  .setValue('input[type="file"]', require('path').resolve('/home/maksimk/Downloads/pic_03.png'))
