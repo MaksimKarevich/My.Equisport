@@ -21,6 +21,5 @@ module.exports = {
         browser.expect.element('#lst-ib').to.be.visible;
 
         browser.end();
-        browser.end();
     }
 };
