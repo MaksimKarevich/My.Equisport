@@ -1,7 +1,2 @@
-/node_modules
-*.log
-/reports
-/screens
-package-lock.json
-
-.idea
+/*
+!/e2e_tests/

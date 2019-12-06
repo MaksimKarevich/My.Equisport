@@ -34,8 +34,5 @@ module.exports = {
 		  .useXpath()
 		  .waitForElementVisible(elements.btnLogin, 5000,
 			'You are not logged in. The login form is displayed.')
-		  // .getText(elements.btnLogin, function (result) {
-			//   console.log(result.value);
-		  // })
 	},
 };
